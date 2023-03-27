@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<!--Chinese Frogs HTML-->
+<html>
+    <head>
+        <title></title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <link rel="stylesheet" href="css/orientation_utils.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+	    <meta name="msapplication-tap-highlight" content="no"/>
+		
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/createjs-2013.12.12.min.js"></script>
+        <script type="text/javascript" src="js/ctl_utils.js"></script>
+        <script type="text/javascript" src="js/sprite_lib.js"></script>
+        <script type="text/javascript" src="js/settings.js"></script>
+        <script type="text/javascript" src="js/CInterface.js"></script>
+        <script type="text/javascript" src="js/CSlotSettings.js"></script>
+        <script type="text/javascript" src="js/CLang.js"></script>
+        <script type="text/javascript" src="js/CPreloader.js"></script>
+        <script type="text/javascript" src="js/CMain.js"></script>
+        <script type="text/javascript" src="js/CTextButton.js"></script>
+        <script type="text/javascript" src="js/CGfxButton.js"></script>
+        <script type="text/javascript" src="js/CToggle.js"></script>
+        <script type="text/javascript" src="js/CBetBut.js"></script>
+        <script type="text/javascript" src="js/CMenu.js"></script>
+        <script type="text/javascript" src="js/CMenus.js"></script>
+        <script type="text/javascript" src="js/CGame.js"></script>
+        <script type="text/javascript" src="js/CReelColumn.js"></script>
+        <script type="text/javascript" src="js/CPayTablePanel.js"></script>
+        <script type="text/javascript" src="js/CStaticSymbolCell.js"></script>
+        <script type="text/javascript" src="js/CTweenController.js"></script>
+        <script type="text/javascript" src="js/CMsgBox.js"></script>
+        <script type="text/javascript" src="js/CVector2.js"></script>
+        <script type="text/javascript" src="js/CFormatText.js"></script>
+        <script type="text/javascript" src="js/CWheelBonus.js"></script>
+        <script type="text/javascript" src="js/CBonusPanel.js"></script>
+        <script type="text/javascript" src="js/CLedsBonus.js"></script>
+	    <script type="text/javascript" src="js/CSlotLogic.js"></script>
+        <script type="text/javascript" src="js/CCreditsPanel.js"></script>
+        <script type="text/javascript" src="js/DatabaseController.js"></script>
+        <script type="text/javascript" src="js/CTenNextResult.js"></script>
+        <script type="text/javascript" src="js/CPopup.js"></script>
+        <script type="text/javascript" src="js/CNotification.js"></script>
+        <script type="text/javascript" src="js/CCouponPopup.js"></script>
+        <script type="text/javascript" src="js/CRedeemPopup.js"></script>
+        <script type="text/javascript" src="js/CAddEntriesPopup.js"></script>
+        <script type="text/javascript" src="js/CProfile.js"></script>
+		<script type="text/javascript" src="js/CPayLineController.js"></script>
+		<script type="text/javascript" src="js/CSoundPanel.js"></script>
+		<script type="text/javascript" src="js/CFormatTextBonusPanel.js"></script>
+        <script type="text/javascript" src="js/CMadaamAnim.js"></script>
+        <script type="text/javascript" src="js/CMadaamAnimDisable.js"></script>
+    </head>
+    <body ondragstart="return false;" ondrop="return false;" >
+	<div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
+          <script>
+            $(document).ready(function(){
+                     var oMain = new CMain({
+                                    win_occurrence:100,       //WIN PERCENTAGE.SET A VALUE FROM 0 TO 100.
+                                    slot_cash: 10000000,          //THIS IS THE CURRENT SLOT CASH AMOUNT. THE GAME CHECKS IF THERE IS AVAILABLE CASH FOR WINNINGS.
+                                    min_reel_loop:0,          //NUMBER OF REEL LOOPS BEFORE SLOT STOPS  
+                                    reel_delay: 6,            //NUMBER OF FRAMES TO DELAY THE REELS THAT START AFTER THE FIRST ONE
+                                    time_show_win:3000,       //DURATION IN MILLISECONDS OF THE WINNING COMBO SHOWING
+                                    time_show_all_wins: 6000, //DURATION IN MILLISECONDS OF ALL WINNING COMBO
+                                                    //STARING CREDIT FOR THE USER
+                                    freespin_occurrence: 75,   //IF USER MUST WIN, SET THIS VALUE FOR FREESPIN OCCURRENCE
+                                    bonus_occurrence:0,       //IF USER MUST WIN, SET THIS VALUE FOR BONUS OCCURRENCE
+                                    freespin_symbol_num_occur:[50,30,20],//WHEN PLAYER GET FREESPIN, THIS ARRAY GET THE OCCURRENCE OF RECEIVING 3,4 OR 5 FREESPIN SYMBOLS IN THE WHEEL
+                                    num_freespin: [1,2,2],     //THIS IS THE NUMBER OF FREESPINS IF IN THE FINAL WHEEL THERE ARE 3,4 OR 5 FREESPIN SYMBOLS
+                                    //bonus_prize:      [10,30,60,90,0,20,60,120,200,0,40,30,20,10,0,80,60,40,1000,0],//THIS IS THE LIST OF BONUS PRIZES. KEEP BEST PRIZE IN PENULTIMATE POSITION IN ARRAY
+                                    //bonus_prize:      [10,30,60,90,20,60,120,200,40,30,20,10,80,60,40,250],
+                                    //bonus_prize:      [0.01,0.03,0.06,0.09,0.02,0.06,0.12,0.2,0.04,0.03,0.02,0.01,0.08,0.06,0.04,0.25],
+                                    bonus_prize:      [0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.01,0.09,0.08,0.07,0.06,0.05,0.25],
+									//bonus_prize_occur:[ 6, 6, 6, 5,6, 5, 4,  3,  1,5, 5, 6, 7, 5,4, 4, 5, 5,   1,4],//OCCURRENCE FOR EACH PRIZE IN BONUS_PRIZES. HIGHER IS THE NUMBER, MORE POSSIBILITY OF OUTPUTHAS THE PRIZE
+                                    bonus_prize_occur:[10, 7, 7, 6, 8, 5,  5,  2, 6, 7, 8,10, 5, 6, 6,   2],
+									coin_bet:[0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1], //COIN BET VALUES
+                                    /***********PAYTABLE********************/
+                                    //EACH SYMBOL PAYTABLE HAS 5 VALUES THAT INDICATES THE MULTIPLIER FOR X1,X2,X3,X4 OR X5
+                                    paytable_symbol_1: [0,0,8,8.5,9], //PAYTABLE FOR SYMBOL 3
+                                    paytable_symbol_2: [0,0,7,7.5,8],  //PAYTABLE FOR SYMBOL 4
+                                    paytable_symbol_3: [0,0,6,6.5,7],   //PAYTABLE FOR SYMBOL 5
+                                    paytable_symbol_4: [0,0,5,5.5,6],   //PAYTABLE FOR SYMBOL 6
+                                    paytable_symbol_5: [0,0,4,4.5,5],   //PAYTABLE FOR SYMBOL 7
+                                    paytable_symbol_6: [0,0,3,3.5,4], //PAYTABLE FOR SYMBOL 1
+                                    paytable_symbol_7: [0,0,2,2.5,3], //PAYTABLE FOR SYMBOL 2
+                                    paytable_symbol_8: [0,0,1,1.5,2], //PAYTABLE FOR SYMBOL 3
+                                    
+                                    fullscreen:true,                       //SET THIS TO FALSE IF YOU DON'T WANT TO SHOW FULLSCREEN BUTTON
+                                    check_orientation:true,                //SET TO FALSE IF YOU DON'T WANT TO SHOW ORIENTATION ALERT ON MOBILE DEVICES
+                                    show_credits:true,                     //ENABLE/DISABLE CREDITS BUTTON IN THE MAIN SCREEN
+                                    num_spin_ads_showing:10     //NUMBER OF SPIN TO COMPLETE, BEFORE TRIGGERING AD SHOWING.
+                                });
+
+                     $(oMain).on("start_session", function (evt) {
+                        if(getParamValue('ctl-arcade') === "true"){
+                            parent.__ctlArcadeStartSession();
+                        }
+                        //...ADD YOUR CODE HERE EVENTUALLY
+                    });
+
+                    $(oMain).on("end_session", function (evt) {
+                        if(getParamValue('ctl-arcade') === "true"){
+                            parent.__ctlArcadeEndSession();
+                        }
+                        //...ADD YOUR CODE HERE EVENTUALLY
+                    });
+                    
+                    $(oMain).on("bet_placed", function (evt, oBetInfo) {
+                        var iBet = oBetInfo.bet;
+                        var iTotBet = oBetInfo.tot_bet;
+                        //...ADD YOUR CODE HERE EVENTUALLY
+                    });
+                    
+                    $(oMain).on("save_score", function (evt, iMoney) {
+                        if(getParamValue('ctl-arcade') === "true"){
+                            parent.__ctlArcadeSaveScore({score:iMoney});
+                        }
+                        //...ADD YOUR CODE HERE EVENTUALLY
+                    });
+
+                    $(oMain).on("show_interlevel_ad", function (evt) {
+                        if(getParamValue('ctl-arcade') === "true"){
+                            parent.__ctlArcadeShowInterlevelAD();
+                        }
+                        //...ADD YOUR CODE HERE EVENTUALLY
+                    });
+
+                    $(oMain).on("share_event", function (evt, oData) {
+                        if(getParamValue('ctl-arcade') === "true"){
+                            parent.__ctlArcadeShareEvent(oData);
+                        }
+                        //...ADD YOUR CODE HERE EVENTUALLY
+                    });
+                     
+                    if(isIOS()){
+                        setTimeout(function(){sizeHandler();},200); 
+                    }else{ 
+                        sizeHandler(); 
+                    }
+           });
+           
+           // bet: 1, 2 ,5, 10, 20, 50, 100
+           // kiosID; lineNumber, betPerLine, mode 
+           //var api_url = "http://localhost:59560/Admin/GetGameResultFromPool?kioskid=18&gameID=2&lineNumber=20&betPerLine=1&mode=1&gamepoolid=0";
+        
+        </script>
+        <canvas id="canvas" class='ani_hack' width="1500" height="640"> </canvas>
+        <div data-orientation="landscape" class="orientation-msg-container"><p class="orientation-msg-text">Please rotate your device</p></div>
+        <div id="block_game" style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%; display:none"></div>
+    </body>
+</html>
